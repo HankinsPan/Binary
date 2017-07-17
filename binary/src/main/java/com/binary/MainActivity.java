@@ -74,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
         mRlaDrawRect = (RelativeLayout) findViewById(R.id.rla_drawRect);
 
 
-
-
         imageUrl = new ArrayList<String>();
         imageUrl.add("http://img.hb.aicdn.com/3fb58311847342c5825fc12141a6b3c3c10af245182a5-bL7uDr_fw658");
         imageUrl.add("http://img.hb.aicdn.com/179eb10cf63c2decd22309c0f33cc19f30d0385e6cf64-PrQPDL_fw658");
@@ -110,9 +108,12 @@ public class MainActivity extends AppCompatActivity {
         btnDrawC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mRlaImage.setVisibility(View.GONE);
-                mRlaDraw.setVisibility(View.VISIBLE);
-                mRlaDrawCircle.addView(new DrawView(MainActivity.this));
+//                mRlaImage.setVisibility(View.GONE);
+//                mRlaDraw.setVisibility(View.VISIBLE);
+//                mRlaDrawCircle.addView(new DrawView(MainActivity.this));
+
+                Intent intent = new Intent(MainActivity.this,ThirdActivity.class);
+                startActivity(intent);
             }
         });
 
