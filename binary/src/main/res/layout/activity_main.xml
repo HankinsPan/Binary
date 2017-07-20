@@ -35,6 +35,16 @@
             android:layout_weight="1"
             android:text="New Activity" />
 
+
+        <Button
+            android:id="@+id/btn_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:text="turn List" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -113,11 +123,11 @@
 
     </LinearLayout>
 
-    <com.binary.DrawRect
-        android:id="@+id/draw_line"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/rla_draw"
-        />
+    <!--<com.binary.DrawRect-->
+        <!--android:id="@+id/draw_line"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@id/rla_draw"-->
+        <!--/>-->
 
 </RelativeLayout>

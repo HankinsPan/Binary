@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
 
     private ImageView imageView;
-    private Button btnOne, btnTwo, btnDrawC, btnDrawR;
+    private Button btnOne, btnTwo,btnFour, btnDrawC, btnDrawR;
     private ProgressBar progressBar;
 
     private RelativeLayout mRlaImage;
@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         handler = new MyHandler();
-        final DrawRect drawRect = (DrawRect) findViewById(R.id.draw_line);
-        drawRect.startAnim();
+//        final DrawRect drawRect = (DrawRect) findViewById(R.id.draw_line);
+//        drawRect.startAnim();
 
 
         initView();
@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.iv_bg);
         btnOne = (Button) findViewById(R.id.btn_show);
         btnTwo = (Button) findViewById(R.id.btn_turn);
+        btnFour = (Button) findViewById(R.id.btn_list);
+
         btnDrawC = (Button) findViewById(R.id.btn_drawC);
         btnDrawR = (Button) findViewById(R.id.btn_drawR);
         progressBar = (ProgressBar) findViewById(R.id.pro_bar);
@@ -102,6 +104,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnFour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,FourActivity.class);
                 startActivity(intent);
             }
         });
