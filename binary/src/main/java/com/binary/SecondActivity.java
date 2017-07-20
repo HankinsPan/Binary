@@ -2,14 +2,23 @@ package com.binary;
 
 
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by bestotem on 2017/7/12.
@@ -18,11 +27,9 @@ import android.widget.TextView;
 public class SecondActivity extends AppCompatActivity {
     public static final String TAG = "SecondActivity";
 
-    private Button btn1,btn2;
+    private Button btn1, btn2;
     private TextView tvShow;
     private ImageView imgView;
-
-    private static Handler handler = new Handler();
 
     private static String imgUrl = "http://img.hb.aicdn.com/1663bc03df1927e714f58ae6fcba20b2ca1afaad2a6ee1-vxwDzm_fw658";
     private ProgressDialog dialog;
@@ -46,13 +53,10 @@ public class SecondActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Thread(new MyThread()).start();
-
+                new Thread(runnable).start();
                 dialog.show();
             }
         });
-
-
 
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,17 +69,63 @@ public class SecondActivity extends AppCompatActivity {
                             public void run() {
                                 tvShow.setText("at postDelayed 3 Second");
                             }
-                        },3000);
+                        }, 3000);
                     }
                 }).start();
             }
         });
     }
 
-    public class MyThread implements Runnable{
-
+    private Runnable runnable = new Runnable() {
         @Override
         public void run() {
+            try {
+                URL url = new URL(imgUrl);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setConnectTimeout(5 * 1000);
+                connection.setUseCaches(true);
+                connection.setRequestMethod("GET");
+                connection.connect();
+
+                if (connection.getResponseCode() == 200) {
+                    InputStream inputStream = connection.getInputStream();
+                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+
+                    Message msg = new Message();
+                    msg.what = 1;
+                    msg.obj = bitmap;
+
+                    handler.sendMessage(msg);
+
+                    inputStream.close();
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
         }
+    };
+
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    Bitmap bmp = (Bitmap) msg.obj;
+                    imgView.setImageBitmap(bmp);
+                    dialog.dismiss();
+            }
+        }
+    };
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        dialog.dismiss();
+        this.finish();
     }
 }
