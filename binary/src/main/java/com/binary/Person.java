@@ -10,6 +10,8 @@ public class Person {
     private String age;
     private String des;
 
+    private boolean isCheck;
+
 
     public Person(String id, String name, String age, String des) {
         this.id = id;
@@ -49,5 +51,13 @@ public class Person {
 
     public void setDes(String des) {
         this.des = des;
+    }
+
+    public boolean isCheck() {
+        return isCheck;
+    }
+
+    public void setCheck(boolean check) {
+        isCheck = check;
     }
 }

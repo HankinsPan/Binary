@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants"
+    >
 
     <LinearLayout
         android:id="@+id/ll_item"
@@ -14,7 +16,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             >
             <ImageView
                 android:id="@+id/iv_fly"
@@ -32,7 +34,7 @@
                 android:layout_below="@+id/iv_fly"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-
+                android:text="0003"
                 android:layout_centerHorizontal="true"
                 />
 
@@ -42,7 +44,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="7"
             >
 
             <TextView
@@ -51,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_alignParentLeft="true"
-
+                android:text="Pan"
                 android:textColor="#333"
                 android:textSize="25sp"
                 />
@@ -63,7 +65,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_toRightOf="@id/tv_name"
                 android:layout_marginLeft="15dp"
-
+                android:text="22"
                 android:textSize="13sp"
                 android:textColor="@color/colorPrimary"
                 />
@@ -88,8 +90,27 @@
                 android:textSize="15sp"
                 android:textColor="#CCC"
                 android:layout_marginLeft="5dp"
+                android:text="+86 13245698527"
                 />
 
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            >
+
+            <CheckBox
+                android:id="@+id/ck_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:checked="false"
+                android:clickable="true"
+                />
 
         </RelativeLayout>
 
