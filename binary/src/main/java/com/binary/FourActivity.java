@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.binary.common.AdapterViewHolder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class FourActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private ListView listView;
     private List<Person> mPerson = new ArrayList<>();
+    private AdapterViewHolder mAdapter;
 
 
     @Override
@@ -42,6 +45,8 @@ public class FourActivity extends AppCompatActivity implements AdapterView.OnIte
 
             person = new Person(id, name, age, des);
             mPerson.add(person);
+
+//            mAdapter = new AdapterViewHolder(this,mPerson);
         }
 
     }
@@ -49,7 +54,8 @@ public class FourActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private void initView() {
         listView = (ListView) findViewById(R.id.lv_main);
-        listView.setAdapter(new MyAdapter(this,mPerson));
+//        listView.setAdapter(new MyAdapter(this,mPerson));
+        listView.setAdapter(new AdapterViewHolder(this,mPerson));
 
     }
 
