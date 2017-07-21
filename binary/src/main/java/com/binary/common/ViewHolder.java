@@ -60,4 +60,9 @@ public class ViewHolder {
     public View getmConvertView() {
         return mConvertView;
     }
+
+
+    public int getmPosition() {
+        return mPosition;
+    }
 }
