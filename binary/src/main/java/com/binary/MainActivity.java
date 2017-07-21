@@ -26,13 +26,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.Manifest;
 
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
 
     private ImageView imageView;
-    private Button btnOne, btnTwo,btnFour, btnDrawC, btnDrawR;
+    private Button btnOne, btnTwo,btnFour, btnDrawC, btnDrawR,btnDrawL;
     private ProgressBar progressBar;
 
     private RelativeLayout mRlaImage;
@@ -69,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
         btnDrawC = (Button) findViewById(R.id.btn_drawC);
         btnDrawR = (Button) findViewById(R.id.btn_drawR);
+        btnDrawL = (Button) findViewById(R.id.btn_reList);
+
         progressBar = (ProgressBar) findViewById(R.id.pro_bar);
 
         mRlaImage = (RelativeLayout) findViewById(R.id.rla_Img);
@@ -137,6 +140,14 @@ public class MainActivity extends AppCompatActivity {
 //                mRlaDrawRect.addView(new DrawRect(MainActivity.this));
 
 
+            }
+        });
+
+        btnDrawL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,FiveActivity.class);
+                startActivity(intent);
             }
         });
 
