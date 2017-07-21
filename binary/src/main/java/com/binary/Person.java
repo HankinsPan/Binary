@@ -9,7 +9,6 @@ public class Person {
     private String name;
     private String age;
     private String des;
-    private int avatar;
 
 
     public Person(String id, String name, String age, String des) {
@@ -50,13 +49,5 @@ public class Person {
 
     public void setDes(String des) {
         this.des = des;
-    }
-
-    public int getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(int avatar) {
-        this.avatar = avatar;
     }
 }
