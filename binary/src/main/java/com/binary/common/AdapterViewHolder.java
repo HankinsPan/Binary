@@ -2,7 +2,6 @@ package com.binary.common;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 
 import com.binary.Person;
@@ -17,7 +16,7 @@ import java.util.List;
 
 public class AdapterViewHolder extends ConmentAdapter<Person> {
 
-    private List<Integer> mPos = new ArrayList<Integer>();
+    private List<Integer> mPos = new ArrayList<>();
 
 
     public AdapterViewHolder(Context mContext, List<Person> mDatas) {

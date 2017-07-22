@@ -134,10 +134,14 @@ public class MainActivity extends AppCompatActivity {
         btnDrawR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mRlaImage.setVisibility(View.GONE);
+//                mRlaImage.setVisibility(View.GONE);
 //                mRlaDraw.setVisibility(View.VISIBLE);
-                mRlaDraw.setVisibility(View.GONE);
+//                mRlaDraw.setVisibility(View.GONE);
 //                mRlaDrawRect.addView(new DrawRect(MainActivity.this));
+
+                Intent intent = new Intent(MainActivity.this,SixActivity.class);
+                startActivity(intent);
+
 
 
             }
