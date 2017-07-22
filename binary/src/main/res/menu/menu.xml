@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_listView"
+        android:icon="@mipmap/ic_light"
+        android:orderInCategory="80"
+        android:title="ListView" />
+
+    <item
+        android:id="@+id/action_gridView"
+        android:icon="@mipmap/ic_score"
+        android:orderInCategory="90"
+        android:title="GridView" />
+    <item
+        android:id="@+id/action_hor"
+        android:icon="@mipmap/ic_donut"
+        android:orderInCategory="100"
+        android:title="HorView" />
+    <item
+        android:id="@+id/action_full"
+        android:icon="@mipmap/ic_phonelink"
+        android:orderInCategory="120"
+        android:title="FullView" />
+
+
+</menu>

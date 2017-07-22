@@ -1,10 +1,15 @@
 package com.binary;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,19 +37,64 @@ public class SixActivity extends AppCompatActivity {
     private void initDatas() {
         mDatas = new ArrayList<String>();
 
-        for (int i = 'A'; i <='z'; i++) {
-            mDatas.add(""+(char)i);
+        for (int i = 'A'; i <= 'z'; i++) {
+            mDatas.add("" + (char) i);
         }
     }
 
     private void initView() {
         mRecyclerView = (RecyclerView) findViewById(R.id.re_cyc);
-        adapter = new SimpeAdapter(this,mDatas);
+        adapter = new SimpeAdapter(this, mDatas);
         mRecyclerView.setAdapter(adapter);
 
 
-        LinearLayoutManager lp = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        LinearLayoutManager lp = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(lp);
 
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_listView:
+                mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+                break;
+
+            case R.id.action_gridView:
+                mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+
+                break;
+
+            case R.id.action_hor:
+                mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(4,
+                        StaggeredGridLayoutManager.HORIZONTAL));
+
+                break;
+
+            case R.id.action_full:
+                Intent intent = new Intent(SixActivity.this,FullActivity.class);
+                startActivity(intent);
+                break;
+
+            default:
+                break;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
 }
+
+
+
+
