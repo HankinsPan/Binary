@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -16,7 +15,7 @@ import java.util.List;
 
 public class SimpeAdapter extends RecyclerView.Adapter<MyViewHolder> {
     private Context mContext;
-    private List<String> datas;
+    protected List<String> datas;
     private LayoutInflater mInflater;
 
     public SimpeAdapter(Context context, List<String> datas) {
@@ -58,25 +57,28 @@ public class SimpeAdapter extends RecyclerView.Adapter<MyViewHolder> {
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.tvTxt.setText(datas.get(position));
+        setUpItemEvent(holder);
+    }
 
+    protected void setUpItemEvent(final MyViewHolder holder){
         if (mOnItemClickListener!=null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mOnItemClickListener.onItemClick(holder.itemView,position);
+                    int pos = holder.getLayoutPosition();
+                    mOnItemClickListener.onItemClick(holder.itemView,pos);
                 }
             });
 
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    mOnItemClickListener.onLongItemClick(view,position);
+                    int pos = holder.getLayoutPosition();
+                    mOnItemClickListener.onLongItemClick(view,pos);
                     return false;
                 }
             });
         }
-
-
     }
 
     @Override
