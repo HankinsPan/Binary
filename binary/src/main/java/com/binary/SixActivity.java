@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +38,7 @@ public class SixActivity extends AppCompatActivity {
 
 
     private void initDatas() {
-        mDatas = new ArrayList<String>();
+        mDatas = new ArrayList<>();
 
         for (int i = 'A'; i <= 'z'; i++) {
             mDatas.add("" + (char) i);
@@ -50,6 +53,22 @@ public class SixActivity extends AppCompatActivity {
 
         LinearLayoutManager lp = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(lp);
+
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        adapter.setmOnItemClickListener(new SimpeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(SixActivity.this,"click -> "+position,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+                mDatas.remove(position);
+                adapter.notifyItemChanged(position);
+                Toast.makeText(SixActivity.this,"position "+position+" be remove",Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -84,6 +103,16 @@ public class SixActivity extends AppCompatActivity {
             case R.id.action_full:
                 Intent intent = new Intent(SixActivity.this,FullActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.action_add:
+                adapter.addData(1);
+
+                break;
+
+            case R.id.action_del:
+                adapter.delData(1);
+
                 break;
 
             default:

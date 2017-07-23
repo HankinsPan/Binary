@@ -32,7 +32,7 @@ public class FullAdapter extends RecyclerView.Adapter<FullViewHolder> {
 
         mHeight = new ArrayList<Integer>();
         for (int i = 0; i < datas.size(); i++) {
-            mHeight.add(200+(int) (Math.random()*(400+i*20)));
+            mHeight.add(200+(int) (Math.random()*(300+i*20)));
         }
     }
 

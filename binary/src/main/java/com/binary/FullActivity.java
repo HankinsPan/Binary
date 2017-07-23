@@ -38,7 +38,7 @@ public class FullActivity extends AppCompatActivity {
     }
 
     private void initDatas() {
-        mDatas = new ArrayList<String>();
+        mDatas = new ArrayList<>();
 
         for (int i = 'A'; i <= 'z'; i++) {
             mDatas.add(""+(char)i);

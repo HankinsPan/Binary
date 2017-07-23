@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -24,6 +25,28 @@ public class SimpeAdapter extends RecyclerView.Adapter<MyViewHolder> {
         mInflater = LayoutInflater.from(context);
     }
 
+    public interface OnItemClickListener{
+        void onItemClick(View view,int position);
+        void onLongItemClick(View view,int position);
+    }
+
+    private OnItemClickListener mOnItemClickListener;
+
+    public void setmOnItemClickListener(OnItemClickListener mOnItemClickListener) {
+        this.mOnItemClickListener = mOnItemClickListener;
+    }
+
+    public void addData(int position){
+
+        datas.add(position,"insert one");
+        notifyItemChanged(position);
+    }
+
+    public void delData(int position){
+        datas.remove(position);
+        notifyItemChanged(position);
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -33,8 +56,27 @@ public class SimpeAdapter extends RecyclerView.Adapter<MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.tvTxt.setText(datas.get(position));
+
+        if (mOnItemClickListener!=null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mOnItemClickListener.onItemClick(holder.itemView,position);
+                }
+            });
+
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    mOnItemClickListener.onLongItemClick(view,position);
+                    return false;
+                }
+            });
+        }
+
+
     }
 
     @Override

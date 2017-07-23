@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.binary.SixActivity">
+
+
+    <item
+        android:id="@+id/action_add"
+        android:icon="@mipmap/ic_open"
+        android:orderInCategory="60"
+        android:title="Add"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/action_del"
+        android:icon="@mipmap/ic_extension"
+        android:orderInCategory="70"
+        android:title="Del"
+        app:showAsAction="always"
+        />
 
     <item
         android:id="@+id/action_listView"
