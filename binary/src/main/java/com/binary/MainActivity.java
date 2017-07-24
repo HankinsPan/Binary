@@ -19,6 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.binary.compent.RecycActivity;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
 
     private ImageView imageView;
-    private Button btnOne, btnTwo,btnFour, btnDrawC, btnDrawR,btnDrawL;
+    private Button btnOne, btnTwo,btnFour, btnDrawC, btnDrawR,btnDrawL,btnRecyc;
     private ProgressBar progressBar;
 
     private RelativeLayout mRlaImage;
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         btnDrawC = (Button) findViewById(R.id.btn_drawC);
         btnDrawR = (Button) findViewById(R.id.btn_drawR);
         btnDrawL = (Button) findViewById(R.id.btn_reList);
+
+        btnRecyc = (Button) findViewById(R.id.btn_recyc);
 
         progressBar = (ProgressBar) findViewById(R.id.pro_bar);
 
@@ -151,6 +155,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,FiveActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnRecyc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RecycActivity.class);
                 startActivity(intent);
             }
         });

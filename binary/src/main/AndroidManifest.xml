@@ -30,6 +30,8 @@
 
         <activity android:name=".FullActivity" />
 
+        <activity android:name=".compent.RecycActivity" />
+
     </application>
 
 </manifest>
