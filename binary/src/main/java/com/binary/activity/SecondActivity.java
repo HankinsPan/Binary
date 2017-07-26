@@ -1,4 +1,4 @@
-package com.binary;
+package com.binary.activity;
 
 
 import android.app.ProgressDialog;
@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.binary.R;
 
 import java.io.IOException;
 import java.io.InputStream;

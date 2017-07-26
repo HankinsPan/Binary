@@ -19,17 +19,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SecondActivity" />
+        <activity android:name=".activity.SecondActivity" />
 
-        <activity android:name=".ThirdActivity" />
+        <activity android:name=".activity.ThirdActivity" />
 
-        <activity android:name=".FourActivity" />
+        <activity android:name=".activity.FourActivity" />
 
-        <activity android:name=".FiveActivity" />
+        <activity android:name=".activity.FiveActivity" />
 
-        <activity android:name=".SixActivity" />
+        <activity android:name=".activity.SixActivity" />
 
-        <activity android:name=".FullActivity" />
+        <activity android:name=".activity.FullActivity" />
 
         <activity android:name=".compent.RecycActivity" />
 

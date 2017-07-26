@@ -1,4 +1,4 @@
-package com.binary;
+package com.binary.view;
 
 import android.content.Context;
 import android.graphics.Canvas;

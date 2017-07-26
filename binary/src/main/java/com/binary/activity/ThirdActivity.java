@@ -1,4 +1,4 @@
-package com.binary;
+package com.binary.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.binary.R;
+import com.binary.view.WaterFallLayout;
 
 import java.io.IOException;
 import java.io.InputStream;

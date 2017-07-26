@@ -1,4 +1,4 @@
-package com.binary;
+package com.binary.view;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

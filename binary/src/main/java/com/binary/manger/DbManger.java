@@ -25,6 +25,11 @@ public class DbManger {
         return helper;
     }
 
+    /**
+     * 执行SQL命令
+     * @param database 数据库对象
+     * @param sql SQL语句
+     */
     public static void execSQL(SQLiteDatabase database, String sql) {
         if (database != null) {
             if (sql != null && !"".equals(sql)) {
@@ -50,6 +55,11 @@ public class DbManger {
     }
 
 
+    /**
+     * 将游标类型转化为List
+     * @param cursor
+     * @return
+     */
     public static List<Person> cursorToList(Cursor cursor){
         List<Person> list = new ArrayList<>();
         // 判断游标中的数据是否读取完毕

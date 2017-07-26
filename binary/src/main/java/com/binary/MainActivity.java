@@ -19,6 +19,11 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.binary.activity.FiveActivity;
+import com.binary.activity.FourActivity;
+import com.binary.activity.SecondActivity;
+import com.binary.activity.SixActivity;
+import com.binary.activity.ThirdActivity;
 import com.binary.compent.RecycActivity;
 import com.binary.sqlite.SQLiteActivity;
 

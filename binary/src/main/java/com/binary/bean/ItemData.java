@@ -1,4 +1,4 @@
-package com.binary;
+package com.binary.bean;
 
 /**
  * Created by bestotem on 2017/7/21.

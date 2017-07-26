@@ -1,4 +1,4 @@
-package com.binary;
+package com.binary.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 
+import com.binary.R;
 import com.binary.bean.Person;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.binary;
+package com.binary.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Toast;
+
+import com.binary.FullAdapter;
+import com.binary.R;
+import com.binary.SimpeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

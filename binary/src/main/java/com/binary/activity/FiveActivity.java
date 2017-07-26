@@ -1,9 +1,13 @@
-package com.binary;
+package com.binary.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
+
+import com.binary.FiveAdapter;
+import com.binary.bean.ItemData;
+import com.binary.R;
 
 import java.util.ArrayList;
 import java.util.List;
