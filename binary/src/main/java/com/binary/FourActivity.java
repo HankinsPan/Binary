@@ -3,10 +3,9 @@ package com.binary;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.binary.bean.Person;
 import com.binary.common.AdapterViewHolder;
 
 import java.util.ArrayList;
@@ -38,9 +37,9 @@ public class FourActivity extends AppCompatActivity {
     private void initData() {
         Person person;
         for (int i = 0; i < 200; i++) {
-            String id = i + "";
+            int id = i;
             String name = "hel" + i + " lo.";
-            String age = "Age " + i;
+            int age = (int) (i+i*Math.random()*100);
             String des = "158 73" + Math.random() * 100 + "" + i + "2315";
 
             person = new Person(id, name, age, des);

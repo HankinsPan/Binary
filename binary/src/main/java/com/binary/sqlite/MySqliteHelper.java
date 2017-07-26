@@ -46,7 +46,9 @@ public class MySqliteHelper extends SQLiteOpenHelper {
                 +Constants.TABLE_NAME+" ("
                 +Constants._ID+ " Integer primary key,"
                 +Constants.NAME+" varchar(10),"
-                +Constants.AGE+" Integer)";
+                +Constants.AGE+" Integer,"
+                +Constants.DES+" varchar(30)"
+                + ")";
 
         db.execSQL(sql);
 

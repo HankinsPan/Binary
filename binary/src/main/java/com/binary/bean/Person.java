@@ -1,31 +1,35 @@
-package com.binary;
+package com.binary.bean;
 
 /**
  * Created by bestotem on 2017/7/20.
  */
 
 public class Person {
-    private String id;
+    private int id;
     private String name;
-    private String age;
+    private int age;
     private String des;
 
     private boolean isCheck;
 
 
-    public Person(String id, String name, String age, String des) {
+    public Person(int id, String name, int age, String des) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.des = des;
     }
 
+    @Override
+    public String toString() {
+        return "id= "+this.id+" name= "+this.name+" age= "+this.age+" des= "+this.des;
+    }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -37,11 +41,11 @@ public class Person {
         this.name = name;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 

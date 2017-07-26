@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.CheckBox;
 
-import com.binary.Person;
+import com.binary.bean.Person;
 import com.binary.R;
 
 import java.util.ArrayList;
@@ -54,9 +54,9 @@ public class AdapterViewHolder extends ConmentAdapter<Person> {
 
     @Override
     public void convert(final ViewHolder holder, Person person) {
-        holder.setText(R.id.tv_id,person.getId())
+        holder.setText(R.id.tv_id,person.getId()+"")
                 .setText(R.id.tv_name,person.getName())
-                .setText(R.id.tv_age,person.getAge())
+                .setText(R.id.tv_age,person.getAge()+"")
                 .setText(R.id.tv_tel,person.getDes());
 
         final CheckBox box = holder.getView(R.id.ck_box);

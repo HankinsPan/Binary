@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 
+import com.binary.bean.Person;
+
 import java.util.List;
 
 /**
