@@ -16,7 +16,7 @@ import java.util.List;
  * Created by bestotem on 2017/7/20.
  */
 
-public class FourActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class FourActivity extends AppCompatActivity {
     public static final String TAG = "FourActivity";
 
     private ListView listView;
@@ -58,11 +58,5 @@ public class FourActivity extends AppCompatActivity implements AdapterView.OnIte
         listView.setAdapter(new AdapterViewHolder(this,mPerson));
 
     }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-    }
-
 
 }

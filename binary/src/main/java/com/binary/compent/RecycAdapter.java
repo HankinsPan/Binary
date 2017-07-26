@@ -26,9 +26,6 @@ public class RecycAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         this.datas = datas;
     }
 
-    public void addList(List<DataModal> datas){
-        datas.addAll(datas);
-    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

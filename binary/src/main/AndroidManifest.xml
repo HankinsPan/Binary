@@ -32,6 +32,8 @@
 
         <activity android:name=".compent.RecycActivity" />
 
+        <activity android:name=".sqlite.SQLiteActivity" />
+
     </application>
 
 </manifest>

@@ -65,6 +65,7 @@ public class RecycActivity extends AppCompatActivity {
         mRecyc.setAdapter(adapter);
 
         mRecyc.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+//        mRecyc.setLayoutManager(new GridLayoutManager(this,2));
 
 
     }

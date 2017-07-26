@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.binary.compent.RecycActivity;
+import com.binary.sqlite.SQLiteActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,14 +29,13 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Manifest;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     public static final String TAG = "MainActivity";
 
     private ImageView imageView;
-    private Button btnOne, btnTwo,btnFour, btnDrawC, btnDrawR,btnDrawL,btnRecyc;
+    private Button btnOne, btnTwo,btnFour, btnDrawC, btnDrawR,btnDrawL,btnRecyc,btnSQLite;
     private ProgressBar progressBar;
 
     private RelativeLayout mRlaImage;
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         btnDrawL = (Button) findViewById(R.id.btn_reList);
 
         btnRecyc = (Button) findViewById(R.id.btn_recyc);
+        btnSQLite = (Button) findViewById(R.id.btn_SQLite);
 
         progressBar = (ProgressBar) findViewById(R.id.pro_bar);
 
@@ -94,79 +95,85 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addListener() {
-        btnOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnOne.setOnClickListener(this);
+        btnTwo.setOnClickListener(this);
+
+        btnFour.setOnClickListener(this);
+
+        btnDrawC.setOnClickListener(this);
+
+        btnDrawR.setOnClickListener(this);
+
+        btnDrawL.setOnClickListener(this);
+
+        btnRecyc.setOnClickListener(this);
+
+        btnSQLite.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn_show:
                 mRlaDraw.setVisibility(View.GONE);
                 mRlaImage.setVisibility(View.VISIBLE);
 
                 num++;
                 MyAsyncTask myAsyncTask = new MyAsyncTask(getApplicationContext());
                 myAsyncTask.execute(imageUrl.get(num % imageUrl.size()));
+                break;
 
-            }
-        });
-
-        btnTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            case R.id.btn_turn:
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivity(intent);
-            }
-        });
+                break;
 
-        btnFour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,FourActivity.class);
-                startActivity(intent);
-            }
-        });
+            case R.id.btn_list:
+                Intent intent1 = new Intent(MainActivity.this,FourActivity.class);
+                startActivity(intent1);
 
-        btnDrawC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                mRlaImage.setVisibility(View.GONE);
+                break;
+            case R.id.btn_drawC:
+                mRlaImage.setVisibility(View.GONE);
 //                mRlaDraw.setVisibility(View.VISIBLE);
 //                mRlaDrawCircle.addView(new DrawView(MainActivity.this));
 
-                Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
-                startActivity(intent);
-            }
-        });
+                Intent intent2 = new Intent(MainActivity.this, ThirdActivity.class);
+                startActivity(intent2);
+                break;
 
-        btnDrawR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            case R.id.btn_drawR:
 //                mRlaImage.setVisibility(View.GONE);
 //                mRlaDraw.setVisibility(View.VISIBLE);
 //                mRlaDraw.setVisibility(View.GONE);
 //                mRlaDrawRect.addView(new DrawRect(MainActivity.this));
 
-                Intent intent = new Intent(MainActivity.this,SixActivity.class);
-                startActivity(intent);
+                Intent intent3 = new Intent(MainActivity.this,SixActivity.class);
+                startActivity(intent3);
+
+                break;
+
+            case R.id.btn_reList:
+                Intent intent4 = new Intent(MainActivity.this,FiveActivity.class);
+                startActivity(intent4);
+                break;
+
+            case R.id.btn_recyc:
+                Intent intent5 = new Intent(MainActivity.this, RecycActivity.class);
+                startActivity(intent5);
+                break;
+
+            case R.id.btn_SQLite:
+                Intent intent6 = new Intent(MainActivity.this,SQLiteActivity.class);
+                startActivity(intent6);
+                break;
+
+            default:
+                break;
 
 
-
-            }
-        });
-
-        btnDrawL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,FiveActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnRecyc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, RecycActivity.class);
-                startActivity(intent);
-            }
-        });
-
+        }
     }
 
     class MyAsyncTask extends AsyncTask<String, Integer, Bitmap> {
