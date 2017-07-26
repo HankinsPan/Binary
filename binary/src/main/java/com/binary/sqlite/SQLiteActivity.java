@@ -4,8 +4,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,7 +18,6 @@ import com.binary.bean.Person;
 import com.binary.manger.DbManger;
 import com.binary.util.Constants;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -36,7 +33,7 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
 
     private MySqliteHelper helper;
 
-    public static boolean isCount = false;
+//    public static boolean isCount = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -197,16 +194,23 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
                         for (int i = 1; i <= 120; i++) {
                             ContentValues valuesUpdate = new ContentValues();
 
-                            valuesUpdate.put(Constants.NAME, "bob" +i+ (int)(Math.random()*10*i));
+                            if (i%3==0){
+                                valuesUpdate.put(Constants.NAME, "Bob" +i+ (int)(Math.random()*10*i));
+                            }else {
+                                valuesUpdate.put(Constants.NAME, "Alice" +i+ (int)(Math.random()*10*i));
+                            }
+
                             valuesUpdate.put(Constants.AGE, (int)(Math.random()*10*i));
                             valuesUpdate.put(Constants.DES,(i+(int) (Math.random()*100*i)));
 
                             database.update(Constants.TABLE_NAME,valuesUpdate, Constants._ID + "="+i, null);
-
-                            if (i==120){
-                                isCount = true;
-//                                startAdapterList();
-                            }
+//
+//                            if (i==120){
+////                                isCount = true;
+////                                startAdapterList();
+//
+//                                Toast.makeText(SQLiteActivity.this, " update success ", Toast.LENGTH_SHORT).show();
+//                            }
                         }
                     }
                 }).start();
@@ -222,9 +226,9 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
 //                    Toast.makeText(SQLiteActivity.this, " update fail ", Toast.LENGTH_SHORT).show();
 //                }
 
-                if (isCount){
-                    Toast.makeText(SQLiteActivity.this, " update success ", Toast.LENGTH_SHORT).show();
-                }
+//                if (isCount){
+//                    Toast.makeText(SQLiteActivity.this, " update success ", Toast.LENGTH_SHORT).show();
+//                }
 
                 database.close();
 
