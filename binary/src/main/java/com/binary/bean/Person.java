@@ -22,7 +22,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "id= "+this.id+" name= "+this.name+" age= "+this.age+" des= "+this.des;
+        return "id= " + this.id + " name= " + this.name + " age= " + this.age + " des= " + this.des;
     }
 
     public int getId() {

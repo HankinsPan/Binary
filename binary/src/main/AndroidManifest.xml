@@ -35,6 +35,8 @@
 
         <activity android:name=".sqlite.SQLiteActivity" />
 
+        <activity android:name=".activity.TimeLineActivity" />
+
     </application>
 
 </manifest>

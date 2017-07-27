@@ -118,11 +118,12 @@
             />
 
         <Button
-            android:id="@+id/btn_3"
+            android:id="@+id/btn_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5dp"
+            android:text="tLine"
             />
 
 

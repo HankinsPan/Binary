@@ -24,6 +24,7 @@ import com.binary.activity.FourActivity;
 import com.binary.activity.SecondActivity;
 import com.binary.activity.SixActivity;
 import com.binary.activity.ThirdActivity;
+import com.binary.activity.TimeLineActivity;
 import com.binary.compent.RecycActivity;
 import com.binary.sqlite.SQLiteActivity;
 
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String TAG = "MainActivity";
 
     private ImageView imageView;
-    private Button btnOne, btnTwo,btnFour, btnDrawC, btnDrawR,btnDrawL,btnRecyc,btnSQLite;
+    private Button btnOne, btnTwo,btnFour, btnDrawC, btnDrawR,btnDrawL,btnRecyc,btnSQLite,btnTLine;
     private ProgressBar progressBar;
 
     private RelativeLayout mRlaImage;
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnRecyc = (Button) findViewById(R.id.btn_recyc);
         btnSQLite = (Button) findViewById(R.id.btn_SQLite);
+        btnTLine = (Button) findViewById(R.id.btn_time);
 
         progressBar = (ProgressBar) findViewById(R.id.pro_bar);
 
@@ -102,18 +104,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void addListener() {
         btnOne.setOnClickListener(this);
         btnTwo.setOnClickListener(this);
-
         btnFour.setOnClickListener(this);
 
         btnDrawC.setOnClickListener(this);
-
         btnDrawR.setOnClickListener(this);
-
         btnDrawL.setOnClickListener(this);
 
         btnRecyc.setOnClickListener(this);
-
         btnSQLite.setOnClickListener(this);
+        btnTLine.setOnClickListener(this);
 
     }
 
@@ -173,6 +172,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent6 = new Intent(MainActivity.this,SQLiteActivity.class);
                 startActivity(intent6);
                 break;
+
+            case R.id.btn_time:
+                Intent intent7 = new Intent(MainActivity.this,TimeLineActivity.class);
+                startActivity(intent7);
+                break;
+
 
             default:
                 break;
