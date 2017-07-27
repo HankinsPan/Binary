@@ -65,7 +65,7 @@ public class TimeLineActivity extends AppCompatActivity {
         LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
 
         reTimeLine.setLayoutManager(manager);
-        reTimeLine.addItemDecoration(new TimeDiverItemDecoration());
+        reTimeLine.addItemDecoration(new TimeDiverItemDecoration(this));
 
     }
 }

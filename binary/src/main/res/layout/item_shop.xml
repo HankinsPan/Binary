@@ -7,15 +7,6 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_weight="1"
-        android:background="#E6E6E6"
-        >
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:layout_weight="5"
         android:background="#E6E6E6">
 
@@ -23,7 +14,7 @@
             android:id="@+id/tv_T_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="15dp"
             android:text="name"
             android:textSize="20sp" />
 
@@ -44,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_T_name"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="15dp"
             android:text="hello world i'm hankins"
             android:textColor="#99444444"
 
