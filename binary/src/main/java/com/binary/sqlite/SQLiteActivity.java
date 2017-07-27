@@ -1,19 +1,26 @@
 package com.binary.sqlite;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.binary.R;
+import com.binary.adapter.SQLAdapter;
 import com.binary.bean.Person;
 import com.binary.manger.DbManger;
 import com.binary.util.Constants;
@@ -32,6 +39,16 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
     private ListView lvList;
 
     private MySqliteHelper helper;
+    private List<Person> persons;
+
+
+    //分页显示
+    private int totalNum;
+    private int pageSize= 18;
+    private int pageNum;
+    private int currentPage = 1;
+    private boolean isDivPage;
+
 
 //    public static boolean isCount = false;
 
@@ -97,6 +114,44 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+//    private void startCursorAdapter(Cursor cursor2){
+//        MyCursorAdapter adapter1 = new MyCursorAdapter(this,cursor2,CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+//        lvList.setAdapter(adapter1);
+//    }
+
+
+    private void pageForList(final SQLiteDatabase database){
+        totalNum = DbManger.getData(database,Constants.TABLE_NAME);
+        pageNum = (int) Math.ceil(totalNum/(double)pageSize); //根据总条目与每页的展示条目数 获得总页数 向上取整
+
+        if (currentPage ==1){
+            persons = DbManger.getListByCurrentPage(database,Constants.TABLE_NAME,currentPage,pageSize);
+        }
+
+        final SQLAdapter adapter = new SQLAdapter(this,persons);
+        lvList.setAdapter(adapter);
+
+
+        lvList.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int scrollState) {
+                if (isDivPage && AbsListView.OnScrollListener.SCROLL_STATE_IDLE == scrollState){
+                    if (currentPage<pageNum){
+                        currentPage++;
+                        persons.addAll(DbManger.getListByCurrentPage(database,Constants.TABLE_NAME,currentPage,pageSize));
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                isDivPage = ((firstVisibleItem+visibleItemCount)==totalItemCount);
+
+            }
+        });
+    }
 
     @Override
     public void onClick(View view) {
@@ -161,7 +216,9 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btn_insert_api:
                 database = helper.getWritableDatabase();
 
-                for (int i = 51; i <= 120; i++) {
+                database.beginTransaction();
+
+                for (int i = 51; i <= 150; i++) {
                     ContentValues values = new ContentValues();
                     values.put(Constants._ID, i);
                     values.put(Constants.NAME, "Alice" +i+ (int)(Math.random()*10*i));
@@ -170,6 +227,8 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
 
                     database.insert(Constants.TABLE_NAME, null, values);
                 }
+                database.setTransactionSuccessful();
+                database.endTransaction();
 
 //
 //                if (result>0){
@@ -185,13 +244,13 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btn_update_api:
                 database = helper.getWritableDatabase();
 
-
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         SQLiteDatabase database= helper.getWritableDatabase();
 
-                        for (int i = 1; i <= 120; i++) {
+                        database.beginTransaction();
+                        for (int i = 1; i <= 150; i++) {
                             ContentValues valuesUpdate = new ContentValues();
 
                             if (i%3==0){
@@ -212,6 +271,10 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
 //                                Toast.makeText(SQLiteActivity.this, " update success ", Toast.LENGTH_SHORT).show();
 //                            }
                         }
+
+                        database.setTransactionSuccessful();
+                        database.endTransaction();
+
                     }
                 }).start();
 
@@ -257,8 +320,7 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
 
             case R.id.btn_list:
                 database = helper.getWritableDatabase();
-                Cursor cursor2;
-
+//                Cursor cursor2;
 //                cursor2 = database.query(Constants.TABLE_NAME,
 //                        null,
 //                        Constants._ID + ">?",
@@ -267,9 +329,12 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
 //                        null,
 //                        Constants._ID + " desc");
 
-                cursor2 = database.rawQuery("select * from "+Constants.TABLE_NAME,null);
-                startAdapterList(cursor2);
+//                cursor2 = database.rawQuery("select * from "+Constants.TABLE_NAME,null);
+//                startAdapterList(cursor2);
 
+//                startCursorAdapter(cursor2);
+
+                pageForList(database);
                 database.close();
 
 
@@ -277,6 +342,55 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
 
             default:
                 break;
+        }
+    }
+
+
+    public class MyCursorAdapter extends CursorAdapter{
+        /**
+         * 必须定义的构造方法
+         * @param context
+         * @param c
+         * @param flags
+         */
+        public MyCursorAdapter(Context context, Cursor c, int flags) {
+            super(context, c, flags);
+        }
+
+        /**
+         * 创建适配器中每个Item对应的view对象
+         * @param context 上下文对象
+         * @param cursor 数据源游标对象
+         * @param viewGroup 当前item的父布局
+         * @return 每项item的View对象
+         */
+        @Override
+        public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
+            View view = LayoutInflater.from(SQLiteActivity.this).inflate(R.layout.sql_item,null);
+
+
+            return view;
+        }
+
+        /**
+         * 通过newView（） 方法确定了每个item展示的view对象 在bindView（） 中对布局中的控件进行填充
+         * @param view 由newView（） 返回的每项View对象
+         * @param context 上下文
+         * @param cursor 数据源cursor对象
+         */
+        @Override
+        public void bindView(View view, Context context, Cursor cursor) {
+            TextView tvSqlId = (TextView) findViewById(R.id.tv_sql_id);
+            TextView tvSqlNmae= (TextView) findViewById(R.id.tv_sql_name);
+            TextView tvSqlAge= (TextView) findViewById(R.id.tv_sql_age);
+            TextView tvSqlDes= (TextView) findViewById(R.id.tv_sql_des);
+
+            tvSqlId.setText(cursor.getInt(cursor.getColumnIndex(Constants._ID))+"");
+            tvSqlNmae.setText(cursor.getString(cursor.getColumnIndex(Constants.NAME)));
+            tvSqlAge.setText(cursor.getInt(cursor.getColumnIndex(Constants.AGE))+"");
+            tvSqlDes.setText(cursor.getString(cursor.getColumnIndex(Constants.DES)));
+
+
         }
     }
 }
